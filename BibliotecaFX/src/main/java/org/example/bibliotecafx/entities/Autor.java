@@ -23,6 +23,8 @@ public class Autor {
 
     public Autor(String nombreAutor, String nacionalidad) {
 
+        this.setNombreAutor(nombreAutor);
+        this.setNacionalidad(nacionalidad);
     }
 
     // GETTERS

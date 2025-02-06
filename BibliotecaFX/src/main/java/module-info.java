@@ -11,6 +11,7 @@ module org.example.bibliotecafx {
     requires com.almasb.fxgl.all;
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
+    requires annotations;
 
     opens org.example.bibliotecafx to javafx.fxml;
     exports org.example.bibliotecafx;
