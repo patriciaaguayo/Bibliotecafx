@@ -12,9 +12,20 @@ module org.example.bibliotecafx {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     requires annotations;
+    requires java.naming;
 
+    // Abre este paquete para JavaFX FXML
     opens org.example.bibliotecafx to javafx.fxml;
+
+    // Exporta el módulo principal
     exports org.example.bibliotecafx;
 
+    // Permite que Hibernate acceda a las entidades
     opens org.example.bibliotecafx.entities to org.hibernate.orm.core;
+
+    // Abre GestionInterfaz para JavaFX FXML
+    opens org.example.bibliotecafx.GestionInterfaz to javafx.fxml;  // Necesario para FXML
+
+    // Exporta el paquete GestionInterfaz para que JavaFX pueda acceder a las clases
+    exports org.example.bibliotecafx.GestionInterfaz to javafx.graphics; // Cambiado para permitir acceso
 }
