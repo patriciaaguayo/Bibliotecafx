@@ -8,9 +8,15 @@ import java.util.Objects;
 
 public class SeleccionInterfaz {
 
-    public SeleccionInterfaz(VBox currentAnchorPane, String fxml)throws IOException {
-        VBox nextAnchorPane = FXMLLoader.load(Objects.requireNonNull(InterfazPrincipal.class.getResource(fxml)));
-        currentAnchorPane.getChildren().removeAll();
-        currentAnchorPane.getChildren().setAll(nextAnchorPane);
+    public SeleccionInterfaz(VBox currentVBox, String fxml) throws IOException {
+        System.out.println("Intentando cargar: " + fxml);
+        VBox nextVBox = FXMLLoader.load(getClass().getResource(fxml));
+
+        if (nextVBox == null) {
+            throw new IOException("No se pudo cargar el archivo FXML: " + fxml);
+        }
+
+        currentVBox.getChildren().clear();
+        currentVBox.getChildren().add(nextVBox);
     }
 }

@@ -39,7 +39,7 @@ public class Autor {
 
     public void setIdAutor(Integer idAutor) { this.idAutor = idAutor; }
 
-    public void setNombreAutor(String nombreAutor) { this.nombreAutor = capitalizarPrimeraLetra(nombreAutor); }
+    public void setNombreAutor(String nombreAutor) { this.nombreAutor = capitalizarPrimeraLetraYDespuesDeEspacios(nombreAutor); }
 
     public void setNacionalidad(String nacionalidad) { this.nacionalidad = capitalizarPrimeraLetra(nacionalidad); }
 
@@ -59,5 +59,35 @@ public class Autor {
             return palabra;
         }
         return palabra.substring(0, 1).toUpperCase() + palabra.substring(1).toLowerCase();
+    }
+
+    private static String capitalizarPrimeraLetraYDespuesDeEspacios(String palabra) {
+        if (palabra == null || palabra.isEmpty()) {
+            return palabra;
+        }
+
+        StringBuilder resultado = new StringBuilder();
+        boolean siguienteMayuscula = true;  // Esto indica si la siguiente letra debe ir en mayúscula
+
+        for (int i = 0; i < palabra.length(); i++) {
+            char c = palabra.charAt(i);
+
+            // Si encontramos un espacio, la siguiente letra debe ser mayúscula
+            if (c == ' ') {
+                resultado.append(c);
+                siguienteMayuscula = true;
+            } else {
+                if (siguienteMayuscula) {
+                    // Convertimos el carácter a mayúscula
+                    resultado.append(Character.toUpperCase(c));
+                    siguienteMayuscula = false;
+                } else {
+                    // Convertimos el carácter a minúscula
+                    resultado.append(Character.toLowerCase(c));
+                }
+            }
+        }
+
+        return resultado.toString();
     }
 }

@@ -48,48 +48,51 @@ public class AutorDAOImpl implements IAutorDAO {
     }
 
     /**
-     * @param idAutor se le pasa el id del autor a eliminar
+     *
+     *  @param idAutor se le pasa el id del autor a eliminar
+     * @return devuelve true si el autor fue eliminado correctamente
      */
+
     @Override
-    public void eliminarAutor(Integer idAutor) {
+    public boolean eliminarAutor(Integer idAutor) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
+            // Buscamos al autor en la base de datos
             Autor autor = session.get(Autor.class, idAutor);
 
             if (autor != null) {
                 session.delete(autor);
                 transaction.commit();
+                return true;
 
             } else {
-                throw new RuntimeException("\n Autor con ID " + idAutor + " no encontrado.");
+                return false;
             }
 
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("\n Error al eliminar el autor: " + e.getMessage(), e);
+            System.out.println("\n Error al eliminar el autor: " + e.getMessage());
+            return false;
         }
     }
 
     /**
      * @param nombreAutor se le pasa el nombre del autor a buscar
-     * @return devuelve el autor buscado
+     * @return devuelve una lista con los autores buscados
      */
     @Override
-    public Autor buscarPorNombre(String nombreAutor) {
-
+    public List<Autor> buscarPorNombre(String nombreAutor) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Autor WHERE nombreAutor = :nombre", Autor.class)
-                    .setParameter("nombre", nombreAutor)
-                    .uniqueResult();
-
+            return session.createQuery("FROM Autor WHERE nombreAutor LIKE :nombre", Autor.class)
+                    .setParameter("nombre", "%" + nombreAutor + "%") // Esto es para permitir búsqueda parcial
+                    .list(); // Retorna una lista de autores
         } catch (Exception e) {
-            System.out.println("\n Error al buscar el autor: " + e.getMessage());
-            return null;
+            throw new RuntimeException("Error al buscar autor en la base de datos", e);
         }
     }
 
@@ -121,6 +124,20 @@ public class AutorDAOImpl implements IAutorDAO {
                 transaction.rollback();
             }
             System.out.println("\n Error al modificar el autor: " + e.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param idAutor se le pasa el id del autor a buscar
+     * @return devuelve el autor buscado
+     */
+
+    public Autor buscarPorId(Integer idAutor) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Autor.class, idAutor);  // Devuelve el autor con el ID proporcionado
+        } catch (Exception e) {
+            throw new RuntimeException("Error al buscar el autor por ID: " + e.getMessage(), e);
         }
     }
 

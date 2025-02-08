@@ -30,11 +30,11 @@ public class Prestamo {
 
     public Prestamo() {}
 
-    public Prestamo(Libro libro, Socio socio, LocalDate fechaPrestamo) {
+    public Prestamo(Libro libro, Socio socio) {
         this.libro = libro;
         this.socio = socio;
-        this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = null;
+        this.fechaPrestamo = LocalDate.now().minusDays(1); // Establecer la fecha de préstamo al día de ayer
+        this.fechaDevolucion = LocalDate.now(); // Establecer la fecha de devolución al día de hoy
     }
 
     // GETTERS

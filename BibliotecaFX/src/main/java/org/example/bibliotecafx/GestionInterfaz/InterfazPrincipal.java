@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.example.bibliotecafx.Util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

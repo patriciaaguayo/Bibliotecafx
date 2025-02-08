@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<VBox fx:id="InterfazAutor" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
+<VBox fx:id="InterfazSocio" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
     <AnchorPane prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
@@ -13,7 +13,7 @@
 
             <!-- Contenedor para los botones de acciones -->
             <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarAutor" text="Añadir Autor" textAlignment="CENTER" />
+                <Button onAction="#BotonAgregarAutor" text="Añadir Socio" textAlignment="CENTER" />
                 <Button onAction="#BotonEliminarAutor" text="Eliminar Autor" textAlignment="CENTER" />
                 <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" />
                 <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" />
@@ -38,7 +38,7 @@
             <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
 
             <HBox layoutX="350 " layoutY="690" spacing="80">
-                <Button onAction="#BotonVolverAutor" text="Volver" textAlignment="CENTER" />
+                <Button onAction="#BotonVolverSocio" text="Volver" textAlignment="CENTER" />
                 <Button onAction="#BotonSalirAutor" text="Salir" textAlignment="CENTER" />
             </HBox>
 
