@@ -51,9 +51,9 @@ public class Libro {
 
     public void setISBN(String ISBN) { this.ISBN = ISBN.toUpperCase(); }
 
-    public void setTitulo(String titulo) { this.titulo = capitalizarPrimeraLetra(titulo); }
+    public void setTitulo(String titulo) { this.titulo = capitalizarPrimeraLetraYDespuesDeEspacios(titulo); }
 
-    public void setEditorial(String editorial) { this.editorial = capitalizarPrimeraLetra(editorial); }
+    public void setEditorial(String editorial) { this.editorial = capitalizarPrimeraLetraYDespuesDeEspacios(editorial); }
 
     public void setAnyo(int anyo) { this.anyo = anyo; }
 
@@ -77,5 +77,24 @@ public class Libro {
             return palabra;
         }
         return palabra.substring(0, 1).toUpperCase() + palabra.substring(1).toLowerCase();
+    }
+
+    private static String capitalizarPrimeraLetraYDespuesDeEspacios(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+
+        String[] palabras = texto.toLowerCase().split("\\s+");
+        StringBuilder resultado = new StringBuilder();
+
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                resultado.append(Character.toUpperCase(palabra.charAt(0)))
+                        .append(palabra.substring(1))
+                        .append(" ");
+            }
+        }
+
+        return resultado.toString().trim();
     }
 }

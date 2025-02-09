@@ -5,10 +5,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import org.example.bibliotecafx.DAO.AutorDAOImpl;
-import org.example.bibliotecafx.DAO.IAutorDAO;
-import org.example.bibliotecafx.DAO.SocioDAOImpl;
+import org.example.bibliotecafx.DAO.*;
 import org.example.bibliotecafx.entities.Autor;
+import org.example.bibliotecafx.entities.Libro;
 import org.example.bibliotecafx.entities.Socio;
 
 import java.io.IOException;
@@ -73,6 +72,26 @@ public class GestionInterfaces {
     // Objetos de la interfaz Prestamo
 
     // Objetos de la interfaz Libro
+
+    @FXML
+    private TextField txtISBNLibro;
+
+    @FXML
+    private TextField txtTituloLibro;
+
+    @FXML
+    private TextField txtEditorialLibro;
+
+    @FXML
+    private TextField txtAnyoPublicacionLibro;
+
+    @FXML
+    private TextField txtAutorLibro;
+
+    @FXML
+    private TextArea txtAreaLibros;
+
+    private final ILibroDAO libroDAO = new LibroDAOImpl();
 
     // Acciones de los botones
 
@@ -296,6 +315,192 @@ public class GestionInterfaces {
         System.exit(0);
     }
 
+    @FXML
+    private void BotonAgregarLibro() {
+        String titulo = txtTituloLibro.getText().trim();
+        String isbn = txtISBNLibro.getText().trim();
+        String autorStr = txtAutorLibro.getText().trim();
+        String editorial = txtEditorialLibro.getText().trim();
+        String anyoStr = txtAnyoPublicacionLibro.getText().trim();
+
+        if (titulo.isEmpty() || isbn.isEmpty() || autorStr.isEmpty() || editorial.isEmpty() || anyoStr.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Todos los campos son obligatorios.");
+            return;
+        }
+
+        if (!esISBNValido(isbn)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ISBN debe tener 13 dígitos, con o sin guiones.");
+            return;
+        }
+
+        isbn = isbn.replace("-", "");
+
+        int anyoPublicacion = 0;
+        try {
+            anyoPublicacion = Integer.parseInt(anyoStr);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El año de publicación debe ser un número válido.");
+            return;
+        }
+
+        int idAutor = 0;
+        try {
+            idAutor = Integer.parseInt(autorStr);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ID del autor debe ser un número válido.");
+            return;
+        }
+
+        Autor autor = autorDAO.buscarPorId(idAutor);
+        if (autor == null) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró un autor con el ID proporcionado.");
+            return;
+        }
+
+        Libro libro = new Libro();
+        libro.setISBN(isbn);
+        libro.setTitulo(titulo);
+        libro.setAutor(autor);
+        libro.setEditorial(editorial);
+        libro.setAnyo(anyoPublicacion);
+        libroDAO.registrarLibro(libro);
+        showAlert(Alert.AlertType.INFORMATION, "Éxito", "Libro registrado exitosamente.");
+        BotonLimpiarLibro();
+    }
+
+    @FXML
+    private void BotonModificarLibro() {
+        String isbn = txtISBNLibro.getText().trim();
+        String titulo = txtTituloLibro.getText().trim();
+        String editorial = txtEditorialLibro.getText().trim();
+        String anyoStr = txtAnyoPublicacionLibro.getText().trim();
+
+        if (isbn.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Debe ingresar un ISBN para modificar el libro.");
+            return;
+        }
+
+        if (titulo.isEmpty() || editorial.isEmpty() || anyoStr.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El título, editorial y año de publicación son obligatorios.");
+            return;
+        }
+
+        int anyo;
+        try {
+            anyo = Integer.parseInt(anyoStr);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El año de publicación debe ser un número válido.");
+            return;
+        }
+
+        List<Libro> librosEncontrados = libroDAO.buscarPorParametro(isbn);
+        if (librosEncontrados.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se encontró un libro con el ISBN proporcionado.");
+            return;
+        }
+
+        Libro libro = librosEncontrados.get(0);
+        libro.setTitulo(titulo);
+        libro.setEditorial(editorial);
+        libro.setAnyo(anyo);
+        libroDAO.modificarLibro(libro);
+        showAlert(Alert.AlertType.INFORMATION, "Éxito", "Libro modificado correctamente.");
+    }
+
+    @FXML
+    private void BotonEliminarLibro() {
+        String ISBN = txtISBNLibro.getText().trim();
+
+        if (!esISBNValido(ISBN)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ISBN debe tener 13 dígitos, con o sin guiones.");
+            return;
+        }
+
+        if (ISBN.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Debe ingresar un ISBN para eliminar un libro.");
+            return;
+        }
+
+        boolean eliminado = libroDAO.eliminarLibro(ISBN);
+        if (eliminado) {
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Libro eliminado correctamente.");
+            BotonLimpiarLibro();
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "No se pudo eliminar el libro.");
+        }
+    }
+
+    @FXML
+    private void BotonBuscarLibro() {
+        String titulo = txtTituloLibro.getText().trim();
+        String isbn = txtISBNLibro.getText().trim();
+        String autor = txtAutorLibro.getText().trim();
+        int filledCount = 0;
+        if (!titulo.isEmpty()) filledCount++;
+        if (!isbn.isEmpty()) filledCount++;
+        if (!autor.isEmpty()) filledCount++;
+
+        if (filledCount > 1) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Solo se puede buscar por un parámetro: Título, ISBN o Autor.");
+            return;
+        }
+        String parametro = !titulo.isEmpty() ? titulo : (!isbn.isEmpty() ? isbn : autor);
+
+        if (parametro.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Ingrese un título, ISBN o nombre de autor.");
+            return;
+        }
+        List<Libro> librosEncontrados = libroDAO.buscarPorParametro(parametro);
+        txtAreaLibros.clear();
+
+        if (librosEncontrados.isEmpty()) {
+            txtAreaLibros.setText("No se encontraron libros con ese criterio.");
+            showAlert(Alert.AlertType.WARNING, "Aviso", "No se encontraron libros con ese criterio.");
+        } else if (librosEncontrados.size() == 1) {
+            Libro libro = librosEncontrados.get(0);
+            txtTituloLibro.setText(libro.getTitulo());
+            txtISBNLibro.setText(libro.getISBN());
+            txtAutorLibro.setText(libro.getAutor().getNombreAutor());
+            txtAnyoPublicacionLibro.setText(String.valueOf(libro.getAnyo()));
+            txtEditorialLibro.setText(libro.getEditorial());
+
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Libro encontrado. Datos cargados en los campos.");
+        } else {
+            StringBuilder resultado = new StringBuilder();
+            for (Libro libro : librosEncontrados) {
+                resultado.append(libro.toString()).append("\n");
+            }
+            txtAreaLibros.setText(resultado.toString());
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Múltiples libros encontrados.");
+        }
+    }
+
+    @FXML
+    private void BotonListarLibros() {
+        List<Libro> librosDisponibles = libroDAO.obtenerLibrosDisponibles();
+        txtAreaLibros.clear();
+
+        if (!librosDisponibles.isEmpty()) {
+            StringBuilder resultado = new StringBuilder();
+            for (Libro libro : librosDisponibles) {
+                resultado.append(libro.toString()).append("\n");
+            }
+            txtAreaLibros.setText(resultado.toString());
+        } else {
+            txtAreaLibros.setText("No hay libros disponibles.");
+        }
+    }
+
+    @FXML
+    private void BotonLimpiarLibro() {
+        txtISBNLibro.clear();
+        txtTituloLibro.clear();
+        txtAutorLibro.clear();
+        txtEditorialLibro.clear();
+        txtAnyoPublicacionLibro.clear();
+        txtAreaLibros.clear();
+    }
+
     // Interfaz Socio
 
     @FXML
@@ -381,9 +586,18 @@ public class GestionInterfaces {
 
     @FXML
     private void BotonBuscarSocio() {
-        String parametro1 = txtNombreSocio.getText().trim();
-        String parametro2 = txtTelefonoSocio.getText().trim();
-        String parametro = parametro1.isEmpty() ? parametro2 : parametro1;
+        String nombre = txtNombreSocio.getText().trim();
+        String telefono = txtTelefonoSocio.getText().trim();
+        int filledCount = 0;
+        if (!nombre.isEmpty()) filledCount++;
+        if (!telefono.isEmpty()) filledCount++;
+
+        if (filledCount > 1) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Solo se puede buscar por un parámetro: Nombre o Teléfono.");
+            return;
+        }
+
+        String parametro = !nombre.isEmpty() ? nombre : telefono;
 
         if (parametro.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", "Ingrese un nombre o teléfono para buscar.");
@@ -396,7 +610,6 @@ public class GestionInterfaces {
         if (sociosEncontrados.isEmpty()) {
             txtAreaSocios.setText("No se encontraron socios con ese criterio.");
             showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró ningún socio con ese dato.");
-
         } else if (sociosEncontrados.size() == 1) {
             Socio socio = sociosEncontrados.get(0);
             txtNombreSocio.setText(socio.getNombreSocio());
@@ -404,7 +617,6 @@ public class GestionInterfaces {
             txtTelefonoSocio.setText(socio.getTelefono());
             txtIdSocio.setText(String.valueOf(socio.getIdSocio()));
             showAlert(Alert.AlertType.INFORMATION, "Éxito", "Socio encontrado. Datos cargados en los campos.");
-
         } else {
             StringBuilder resultado = new StringBuilder();
             for (Socio socio : sociosEncontrados) {
@@ -490,5 +702,13 @@ public class GestionInterfaces {
         }
 
         return resultado.toString().trim();
+    }
+
+    private boolean esISBNValido(String isbn) {
+        // Eliminar los guiones si los hay
+        String isbnSinGuiones = isbn.replace("-", "");
+
+        // Verificar que el ISBN tiene exactamente 13 dígitos
+        return isbnSinGuiones.matches("\\d{13}");
     }
 }

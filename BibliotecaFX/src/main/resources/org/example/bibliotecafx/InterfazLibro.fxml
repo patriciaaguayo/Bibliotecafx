@@ -9,30 +9,39 @@
 
         <children>
             <!-- Franja superior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="0" width="900" />
+            <Rectangle fill="#D3D3D3" height="200" layoutY="0" width="900" />
 
             <!-- Contenedor para los botones de acciones -->
-            <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarAutor" text="Añadir Libro" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarAutor" text="Eliminar Libro" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" />
-                <Button onAction="#BotonListarAutores" text="Listar Autores" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarAutor" text="Limpiar Campos" textAlignment="CENTER" />
+            <HBox layoutX="250" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarLibro" text="Añadir Libro" textAlignment="CENTER" />
+                <Button onAction="#BotonEliminarLibro" text="Eliminar Libro" textAlignment="CENTER" />
+                <Button onAction="#BotonModificarLibro" text="Modificar Libro" textAlignment="CENTER" />
+            </HBox>
+
+            <HBox layoutX="150" layoutY="140" spacing="50">
+                <Button onAction="#BotonBuscarLibro" text="Buscar por Nombre, ISBN o Autor" textAlignment="CENTER" />
+                <Button onAction="#BotonListarLibros" text="Listar Libros Disponibles" textAlignment="CENTER" />
+                <Button onAction="#BotonLimpiarLibro" text="Limpiar Campos" textAlignment="CENTER" />
             </HBox>
 
             <!-- Contenedor para los campos de entrada en horizontal -->
-            <HBox layoutX="90" layoutY="200" spacing="20">
-                <Label text="Nombre:" />
-                <TextField fx:id="txtNombreAutor" />
-                <Label text="Nacionalidad:" />
-                <TextField fx:id="txtNacionalidadAutor" />
-                <Label text="ID:" />
-                <TextField fx:id="txtIdAutor"/>
+            <HBox layoutX="90" layoutY="250" spacing="20">
+                <Label text="Titulo:" />
+                <TextField fx:id="txtTituloLibro" />
+                <Label text="Editorial:" />
+                <TextField fx:id="txtEditorialLibro" />
+                <Label text="ISNB:" />
+                <TextField fx:id="txtISBNLibro"/>
             </HBox>
 
-            <!-- Área de texto para mostrar los autores -->
-            <TextArea fx:id="txtAreaAutores" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <HBox layoutX="90" layoutY="300" spacing="20">
+                <Label text="Autor:" />
+                <TextField fx:id="txtAutorLibro" />
+                <Label text="Año Publicación:" />
+                <TextField fx:id="txtAnyoPublicacionLibro" />
+            </HBox>
+
+            <TextArea fx:id="txtAreaLibros" layoutX="75" layoutY="360" prefHeight="250" prefWidth="750" wrapText="true" editable="false"/>
 
             <!-- Franja inferior -->
             <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
