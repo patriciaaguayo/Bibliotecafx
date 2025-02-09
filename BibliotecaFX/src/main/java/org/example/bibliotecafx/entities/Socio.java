@@ -56,7 +56,7 @@ public class Socio {
         return "\n Id: " + idSocio +
                 ", Nombre: " + nombreSocio +
                 ", Dirección: " + direccion +
-                ", Teléfono: " + telefono;
+                ", Teléfono: " + telefono + "\n";
     }
 
     // MÉTODOS

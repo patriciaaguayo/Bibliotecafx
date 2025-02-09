@@ -8,10 +8,9 @@
     <AnchorPane prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
-            <!-- Franja superior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="0" width="900" />
 
-            <!-- Contenedor para los botones de acciones -->
+            <Rectangle fill="#CFE8FF" height="150" layoutY="0" width="900" />
+
             <HBox layoutX="150" layoutY="90" spacing="50">
                 <Button onAction="#BotonAgregarPrestamo" text="Añadir Prestamo" textAlignment="CENTER" />
                 <Button onAction="#BotonBuscarPrestamoSocio" text="Buscar por Socio" textAlignment="CENTER" />
@@ -19,7 +18,6 @@
                 <Button onAction="#BotonLimpiarPrestamo" text="Limpiar Campos" textAlignment="CENTER" />
             </HBox>
 
-            <!-- Contenedor para los campos de entrada en horizontal -->
             <HBox layoutX="160" layoutY="200" spacing="50">
                 <Label text="Socio:" />
                 <TextField fx:id="txIdSocioPrestamo" />
@@ -27,15 +25,13 @@
                 <TextField fx:id="txtISBNPrestamo" />
             </HBox>
 
-            <!-- Área de texto para mostrar los autores -->
             <TextArea fx:id="txtAreaPrestamos" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
 
-            <!-- Franja inferior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
+            <Rectangle fill="#CFE8FF" height="150" layoutY="650" width="900" />
 
-            <HBox layoutX="350 " layoutY="690" spacing="80">
-                <Button onAction="#BotonVolverPrestamo" text="Volver" textAlignment="CENTER" />
-                <Button onAction="#BotonSalirPrestamo" text="Salir" textAlignment="CENTER" />
+            <HBox layoutX="250 " layoutY="680" spacing="80">
+                <Button onAction="#BotonVolverPrestamo" text="Volver" textAlignment="CENTER" styleClass="BotonesFoot"/>
+                <Button onAction="#BotonSalirPrestamo" text="Salir" textAlignment="CENTER" styleClass="BotonesFoot"/>
             </HBox>
 
         </children>

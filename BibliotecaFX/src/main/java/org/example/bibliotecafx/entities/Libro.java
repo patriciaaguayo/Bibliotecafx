@@ -67,7 +67,7 @@ public class Libro {
                 ", Título: " + titulo +
                 ", Autor: " + autor.getNombreAutor() +
                 ", Editorial: " + editorial +
-                ", Año de publicación: " + anyo;
+                ", Año de publicación: " + anyo + "\n";
     }
 
     // MÉTODOS

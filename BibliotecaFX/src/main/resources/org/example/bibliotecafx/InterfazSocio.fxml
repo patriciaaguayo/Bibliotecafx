@@ -8,43 +8,43 @@
     <AnchorPane prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
-            <!-- Franja superior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="0" width="900" />
 
-            <!-- Contenedor para los botones de acciones -->
-            <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarSocio" text="Añadir Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarSocio" text="Eliminar Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarSocio" text="Modificar Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarSocio" text="Buscar por Nombre o teléfono" textAlignment="CENTER" />
-                <Button onAction="#BotonListarSocios" text="Listar Socios" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarSocios" text="Limpiar Campos" textAlignment="CENTER" />
+            <Rectangle fill="#CFE8FF" height="200" layoutY="0" width="900" />
+
+            <HBox layoutX="80" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarSocio" text="Añadir Socio" textAlignment="CENTER" styleClass="BotonesSocio"/>
+                <Button onAction="#BotonEliminarSocio" text="Eliminar Socio" textAlignment="CENTER" styleClass="BotonesSocio"/>
+                <Button onAction="#BotonModificarSocio" text="Modificar Socio" textAlignment="CENTER" styleClass="BotonesSocio"/>
+
             </HBox>
 
-            <!-- Contenedor para los campos de entrada en horizontal -->
-            <HBox layoutX="90" layoutY="200" spacing="50">
-                <Label text="Nombre:" />
-                <TextField fx:id="txtNombreSocio" />
-                <Label text="Dirección:" />
-                <TextField fx:id="txtDireccionSocio" prefWidth="300"/>
+            <HBox layoutX="80" layoutY="140" spacing="50">
+                <Button onAction="#BotonBuscarSocio" text="Buscar por Nombre o teléfono" textAlignment="CENTER" styleClass="BotonesSocio"/>
+                <Button onAction="#BotonListarSocios" text="Listar Socios" textAlignment="CENTER" styleClass="BotonesSocio"/>
+                <Button onAction="#BotonLimpiarSocios" text="Limpiar Campos" textAlignment="CENTER" styleClass="BotonesSocio"/>
             </HBox>
 
-            <HBox layoutX="90" layoutY="250" spacing="50">
-                <Label text="Teléfono:" />
-                <TextField fx:id="txtTelefonoSocio" />
-                <Label text="ID:" />
-                <TextField fx:id="txtIdSocio"/>
+            <HBox layoutX="90" layoutY="240" spacing="50">
+                <Label text="Nombre:" styleClass="textoSocio"/>
+                <TextField fx:id="txtNombreSocio" styleClass="textoSocio"/>
+                <Label text="Dirección:" styleClass="textoSocio"/>
+                <TextField fx:id="txtDireccionSocio" prefWidth="300" styleClass="textoSocio"/>
             </HBox>
 
-            <!-- Área de texto para mostrar los autores -->
-            <TextArea fx:id="txtAreaSocios" layoutX="100" layoutY="300" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <HBox layoutX="90" layoutY="290" spacing="50">
+                <Label text="Teléfono:" styleClass="textoSocio"/>
+                <TextField fx:id="txtTelefonoSocio" styleClass="textoSocio"/>
+                <Label text="ID:" styleClass="textoSocio"/>
+                <TextField fx:id="txtIdSocio" styleClass="textoSocio"/>
+            </HBox>
 
-            <!-- Franja inferior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
+            <TextArea fx:id="txtAreaSocios" layoutX="100" layoutY="350" prefHeight="250" prefWidth="700" wrapText="true" editable="false" styleClass="textoSocio"/>
 
-            <HBox layoutX="350 " layoutY="690" spacing="80">
-                <Button onAction="#BotonVolverSocio" text="Volver" textAlignment="CENTER" />
-                <Button onAction="#BotonSalirSocio" text="Salir" textAlignment="CENTER" />
+            <Rectangle fill="#CFE8FF" height="150" layoutY="650" width="900" />
+
+            <HBox layoutX="250 " layoutY="680" spacing="80">
+                <Button onAction="#BotonVolverSocio" text="Volver" textAlignment="CENTER" styleClass="BotonesFoot"/>
+                <Button onAction="#BotonSalirSocio" text="Salir" textAlignment="CENTER" styleClass="BotonesFoot"/>
             </HBox>
 
         </children>

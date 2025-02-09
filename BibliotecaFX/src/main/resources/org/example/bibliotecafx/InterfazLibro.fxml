@@ -4,51 +4,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<VBox fx:id="InterfazLibro" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
+<VBox fx:id="InterfazLibro" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" styleClass="background-style"
+      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+      fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
     <AnchorPane prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
-            <!-- Franja superior -->
-            <Rectangle fill="#D3D3D3" height="200" layoutY="0" width="900" />
 
-            <!-- Contenedor para los botones de acciones -->
-            <HBox layoutX="250" layoutY="90" spacing="50">
-                <Button onAction="#BotonAgregarLibro" text="Añadir Libro" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarLibro" text="Eliminar Libro" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarLibro" text="Modificar Libro" textAlignment="CENTER" />
+            <Rectangle fill="#CFE8FF" height="200" layoutY="0" width="900" />
+
+            <HBox layoutX="80" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarLibro" text="Añadir Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
+                <Button onAction="#BotonEliminarLibro" text="Eliminar Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
+                <Button onAction="#BotonModificarLibro" text="Modificar Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
             </HBox>
 
-            <HBox layoutX="150" layoutY="140" spacing="50">
-                <Button onAction="#BotonBuscarLibro" text="Buscar por Nombre, ISBN o Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonListarLibros" text="Listar Libros Disponibles" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarLibro" text="Limpiar Campos" textAlignment="CENTER" />
+            <HBox layoutX="80" layoutY="140" spacing="50">
+                <Button onAction="#BotonBuscarLibro" text="Buscar por Nombre, ISBN o Autor" textAlignment="CENTER" styleClass="BotonesLibro"/>
+                <Button onAction="#BotonListarLibros" text="Listar Libros Disponibles" textAlignment="CENTER" styleClass="BotonesLibro"/>
+                <Button onAction="#BotonLimpiarLibro" text="Limpiar Campos" textAlignment="CENTER" styleClass="BotonesLibro"/>
             </HBox>
 
-            <!-- Contenedor para los campos de entrada en horizontal -->
-            <HBox layoutX="90" layoutY="250" spacing="20">
-                <Label text="Titulo:" />
-                <TextField fx:id="txtTituloLibro" />
-                <Label text="Editorial:" />
-                <TextField fx:id="txtEditorialLibro" />
-                <Label text="ISBN:" />
-                <TextField fx:id="txtISBNLibro"/>
+            <HBox layoutX="85" layoutY="250" spacing="20">
+                <Label text="Titulo:" styleClass="textoLibro"/>
+                <TextField fx:id="txtTituloLibro" styleClass="textoLibro"/>
+                <Label text="Editorial:" styleClass="textoLibro"/>
+                <TextField fx:id="txtEditorialLibro" styleClass="textoLibro"/>
+                <Label text="ISBN:" styleClass="textoLibro"/>
+                <TextField fx:id="txtISBNLibro" styleClass="textoLibro"/>
             </HBox>
 
-            <HBox layoutX="90" layoutY="300" spacing="20">
-                <Label text="Autor:" />
-                <TextField fx:id="txtAutorLibro" />
-                <Label text="Año Publicación:" />
-                <TextField fx:id="txtAnyoPublicacionLibro" />
+            <HBox layoutX="85" layoutY="300" spacing="20">
+                <Label text="Autor:" styleClass="textoLibro"/>
+                <TextField fx:id="txtAutorLibro" styleClass="textoLibro"/>
+                <Label text="Año Publicación:" styleClass="textoLibro"/>
+                <TextField fx:id="txtAnyoPublicacionLibro" styleClass="textoLibro"/>
             </HBox>
 
-            <TextArea fx:id="txtAreaLibros" layoutX="75" layoutY="360" prefHeight="250" prefWidth="750" wrapText="true" editable="false"/>
+            <TextArea fx:id="txtAreaLibros" layoutX="75" layoutY="360" prefHeight="250" prefWidth="750" wrapText="true" editable="false" styleClass="textoLibro"/>
 
-            <!-- Franja inferior -->
-            <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
+            <Rectangle fill="#CFE8FF" height="150" layoutY="650" width="900" />
 
-            <HBox layoutX="350 " layoutY="690" spacing="80">
-                <Button onAction="#BotonVolverLibro" text="Volver" textAlignment="CENTER" />
-                <Button onAction="#BotonSalirLibro" text="Salir" textAlignment="CENTER" />
+            <HBox layoutX="250 " layoutY="680" spacing="80">
+                <Button onAction="#BotonVolverLibro" text="Volver" textAlignment="CENTER" styleClass="BotonesFoot"/>
+                <Button onAction="#BotonSalirLibro" text="Salir" textAlignment="CENTER" styleClass="BotonesFoot"/>
             </HBox>
 
         </children>
