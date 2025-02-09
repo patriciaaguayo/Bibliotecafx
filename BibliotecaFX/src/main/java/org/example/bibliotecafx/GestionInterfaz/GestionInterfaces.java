@@ -126,10 +126,7 @@ public class GestionInterfaces {
         try {
             autorDAO.registrarAutor(nuevoAutor);
             showAlert(Alert.AlertType.INFORMATION, "Éxito", "Autor registrado exitosamente.");
-
-            txtNombreAutor.clear();
-            txtNacionalidadAutor.clear();
-            txtIdAutor.clear();
+            BotonLimpiarAutor();
 
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error al registrar el autor: " + e.getMessage());
@@ -152,12 +149,8 @@ public class GestionInterfaces {
             boolean autorEliminado = autorDAO.eliminarAutor(idAutor);
 
             if (autorEliminado) {
-
                 showAlert(Alert.AlertType.INFORMATION, "Éxito", "Autor eliminado exitosamente.");
-
-                txtIdAutor.clear();
-                txtNombreAutor.clear();
-                txtNacionalidadAutor.clear();
+                BotonLimpiarAutor();
 
             } else {
                 showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró un autor con ese ID.");
@@ -192,12 +185,8 @@ public class GestionInterfaces {
                 autorExistente.setNombreAutor(nombre);
                 autorExistente.setNacionalidad(nacionalidad);
                 autorDAO.modificarAutor(autorExistente);
-
                 showAlert(Alert.AlertType.INFORMATION, "Éxito", "Autor modificado exitosamente.");
-
-                txtIdAutor.clear();
-                txtNombreAutor.clear();
-                txtNacionalidadAutor.clear();
+                BotonLimpiarAutor();
 
             } else {
                 showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró un autor con ese ID.");
