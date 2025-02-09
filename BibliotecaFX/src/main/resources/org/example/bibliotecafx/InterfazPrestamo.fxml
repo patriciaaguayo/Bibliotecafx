@@ -12,27 +12,23 @@
             <Rectangle fill="#D3D3D3" height="150" layoutY="0" width="900" />
 
             <!-- Contenedor para los botones de acciones -->
-            <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarAutor" text="Añadir Prestamo" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarAutor" text="Eliminar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" />
-                <Button onAction="#BotonListarAutores" text="Listar Autores" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarAutor" text="Limpiar Campos" textAlignment="CENTER" />
+            <HBox layoutX="150" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarPrestamo" text="Añadir Prestamo" textAlignment="CENTER" />
+                <Button onAction="#BotonBuscarPrestamoSocio" text="Buscar por Socio" textAlignment="CENTER" />
+                <Button onAction="#BotonListarPrestamos" text="Listar Prestamos" textAlignment="CENTER" />
+                <Button onAction="#BotonLimpiarPrestamo" text="Limpiar Campos" textAlignment="CENTER" />
             </HBox>
 
             <!-- Contenedor para los campos de entrada en horizontal -->
-            <HBox layoutX="90" layoutY="200" spacing="20">
-                <Label text="Nombre:" />
-                <TextField fx:id="txtNombreAutor" />
-                <Label text="Nacionalidad:" />
-                <TextField fx:id="txtNacionalidadAutor" />
-                <Label text="ID:" />
-                <TextField fx:id="txtIdAutor"/>
+            <HBox layoutX="160" layoutY="200" spacing="50">
+                <Label text="Socio:" />
+                <TextField fx:id="txIdSocioPrestamo" />
+                <Label text="ISBN:" />
+                <TextField fx:id="txtISBNPrestamo" />
             </HBox>
 
             <!-- Área de texto para mostrar los autores -->
-            <TextArea fx:id="txtAreaAutores" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <TextArea fx:id="txtAreaPrestamos" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
 
             <!-- Franja inferior -->
             <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />

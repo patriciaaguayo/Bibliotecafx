@@ -4,3 +4,10 @@ Rectangle{
     -fx-background-color: #CFE8FF;
     }
 
+.button:hover {
+    -fx-background-color: #66BB6A; /* Cambio de color cuando se pasa el ratón sobre el botón */
+}
+
+#BotonAutores, #BotonLibros, #BotonSocios, #BotonPrestamos, #BotonSalir {
+    -fx-font-size: 18px; /* Establece un tamaño de fuente específico */
+}

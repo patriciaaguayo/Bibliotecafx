@@ -166,6 +166,20 @@ public class LibroDAOImpl implements ILibroDAO {
     }
 
     /**
+     * @param ISBN se le pasa el ISBN del libro a buscar
+     * @return devuelve el libro si se encuentra, de lo contrario, retorna null
+     */
+    @Override
+    public Libro buscarPorISBN(String ISBN) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Libro.class, ISBN);
+        } catch (Exception e) {
+            System.out.println("Error al buscar libro por ISBN: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
      *
      * @param str se le pasa el string a comprobar
      * @return devuelve true si el string es un numero

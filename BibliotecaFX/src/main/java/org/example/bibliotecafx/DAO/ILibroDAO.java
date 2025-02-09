@@ -42,4 +42,11 @@ public interface ILibroDAO {
      */
 
     List<Libro> obtenerLibrosDisponibles();
+
+    /**
+     *
+     * @param ISBN se le pasa el ISBN del libro a buscar
+     * @return devuelve el libro si se encuentra, de lo contrario, retorna null
+     */
+    Libro buscarPorISBN(String ISBN);
 }

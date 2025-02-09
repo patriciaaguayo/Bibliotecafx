@@ -71,15 +71,19 @@ public class Prestamo {
 
     @Override
     public String toString() {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Para formatear la fecha
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Formato de fecha
+        String estado;
+        if (fechaDevolucion.isAfter(LocalDate.now())) {
+            estado = "Activo";
+        } else {
+            estado = "Finalizado";
+        }
         return "\n ISBN: " + libro.getISBN() +
                 ", Título: " + libro.getTitulo() +
                 ", Id Socio: " + socio.getIdSocio() +
-                ", Socio: " + socio.getNombreSocio() +
-                ", Fecha préstamo: " + fechaPrestamo.format(formatter) +
-                ", Fecha devolución: " + (fechaDevolucion != null ? fechaDevolucion.format(formatter) : "Pendiente") +
-                ", Estado: " + (isFinalizado() ? "Finalizado" : "Pendiente");
+                ", Nombre Socio: " + socio.getNombreSocio() +
+                ", Fecha Préstamo: " + fechaPrestamo.format(formatter) +
+                ", Fecha Devolución: " + fechaDevolucion.format(formatter) +
+                ", Estado: " + estado;
     }
 }

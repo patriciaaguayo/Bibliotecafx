@@ -30,7 +30,7 @@
                 <TextField fx:id="txtTituloLibro" />
                 <Label text="Editorial:" />
                 <TextField fx:id="txtEditorialLibro" />
-                <Label text="ISNB:" />
+                <Label text="ISBN:" />
                 <TextField fx:id="txtISBNLibro"/>
             </HBox>
 

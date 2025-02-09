@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import org.example.bibliotecafx.DAO.*;
 import org.example.bibliotecafx.entities.Autor;
 import org.example.bibliotecafx.entities.Libro;
+import org.example.bibliotecafx.entities.Prestamo;
 import org.example.bibliotecafx.entities.Socio;
 
 import java.io.IOException;
@@ -70,6 +71,17 @@ public class GestionInterfaces {
     private final SocioDAOImpl socioDAO = new SocioDAOImpl();
 
     // Objetos de la interfaz Prestamo
+
+    @FXML
+    private TextField txIdSocioPrestamo;
+
+    @FXML
+    private TextField txtISBNPrestamo;
+
+    @FXML
+    private TextArea txtAreaPrestamos;
+
+    private final PrestamoDAOImpl prestamoDAO = new PrestamoDAOImpl();
 
     // Objetos de la interfaz Libro
 
@@ -664,6 +676,106 @@ public class GestionInterfaces {
     @FXML
     private void BotonSalirPrestamo(){
         System.exit(0);
+    }
+
+    @FXML
+    private void BotonAgregarPrestamo() {
+        String idSocioStr = txIdSocioPrestamo.getText().trim();
+        String isbn = txtISBNPrestamo.getText().trim();
+
+        if (idSocioStr.isEmpty() || isbn.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Debe ingresar el ID del socio y el ISBN del libro.");
+            return;
+        }
+
+        if(!esISBNValido(isbn)){
+            showAlert(Alert.AlertType.ERROR, "Error", "El ISBN ingresado no es valido.");
+            return;
+        }
+
+        try {
+            int idSocio = Integer.parseInt(idSocioStr);
+            Socio socio = socioDAO.buscarPorId(idSocio);
+            if (socio == null) {
+                showAlert(Alert.AlertType.ERROR, "Error", "El socio con ID " + idSocio + " no existe.");
+                return;
+            }
+
+            Libro libro = libroDAO.buscarPorISBN(isbn);
+            if (libro == null) {
+                showAlert(Alert.AlertType.ERROR, "Error", "El libro con ISBN " + isbn + " no existe.");
+                return;
+            }
+
+            Prestamo prestamo = new Prestamo(libro, socio);
+            prestamoDAO.registrarPrestamo(prestamo);
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Préstamo registrado exitosamente.");
+
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ID del socio debe ser un número válido.");
+        }
+    }
+
+    @FXML
+    private void BotonListarPrestamos() {
+        List<Prestamo> prestamosActivos = prestamoDAO.listarLibrosPrestados();
+        txtAreaPrestamos.clear();
+
+        if (prestamosActivos.isEmpty()) {
+            txtAreaPrestamos.setText("No hay préstamos activos en este momento.");
+            showAlert(Alert.AlertType.INFORMATION, "Información", "No hay préstamos activos.");
+        } else {
+            StringBuilder resultado = new StringBuilder();
+            for (Prestamo p : prestamosActivos) {
+                resultado.append(p.toString()).append("\n");
+            }
+            txtAreaPrestamos.setText(resultado.toString());
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Préstamos activos listados.");
+        }
+    }
+
+    @FXML
+    private void BotonBuscarPrestamoSocio() {
+        String idSocioStr = txIdSocioPrestamo.getText().trim();
+
+        if (idSocioStr.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Debe ingresar un ID de socio.");
+            return;
+        }
+
+        try {
+            int idSocio = Integer.parseInt(idSocioStr);
+            Socio socio = socioDAO.buscarPorId(idSocio);
+            if (socio == null) {
+                showAlert(Alert.AlertType.ERROR, "Error", "El socio con ID " + idSocio + " no existe.");
+                return;
+            }
+
+            List<Prestamo> prestamos = prestamoDAO.listarHistorialPrestamos(idSocio);
+            txtAreaPrestamos.clear();
+
+            if (prestamos.isEmpty()) {
+                txtAreaPrestamos.setText("El socio no tiene historial de préstamos.");
+                showAlert(Alert.AlertType.INFORMATION, "Información", "El socio no tiene historial de préstamos.");
+            } else {
+                StringBuilder resultado = new StringBuilder();
+                for (Prestamo p : prestamos) {
+                    resultado.append(p.toString()).append("\n");
+                }
+                txtAreaPrestamos.setText(resultado.toString());
+                showAlert(Alert.AlertType.INFORMATION, "Éxito", "Historial de préstamos encontrado.");
+            }
+
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ID del socio debe ser un número válido.");
+        }
+    }
+
+    @FXML
+    private void BotonLimpiarPrestamo() {
+        txtISBNPrestamo.clear();
+        txIdSocioPrestamo.clear();
+        txtAreaPrestamos.clear();
     }
 
     // Método para mostrar alertas

@@ -11,7 +11,7 @@ public interface IPrestamoDAO {
      * @param prestamo se le pasa el prestamo a registrar
      */
 
-    void registrarLibro(Prestamo prestamo);
+    void registrarPrestamo(Prestamo prestamo);
 
     /**
      *
