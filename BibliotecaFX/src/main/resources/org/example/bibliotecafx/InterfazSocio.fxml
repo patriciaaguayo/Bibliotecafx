@@ -15,7 +15,7 @@
             <HBox layoutX="100" layoutY="90" spacing="10">
                 <Button onAction="#BotonAgregarSocio" text="Añadir Socio" textAlignment="CENTER" />
                 <Button onAction="#BotonEliminarSocio" text="Eliminar Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarSocio" text="Modificar Autor" textAlignment="CENTER" />
+                <Button onAction="#BotonModificarSocio" text="Modificar Socio" textAlignment="CENTER" />
                 <Button onAction="#BotonBuscarSocio" text="Buscar por Nombre o teléfono" textAlignment="CENTER" />
                 <Button onAction="#BotonListarSocios" text="Listar Socios" textAlignment="CENTER" />
                 <Button onAction="#BotonLimpiarSocios" text="Limpiar Campos" textAlignment="CENTER" />

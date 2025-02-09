@@ -7,7 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import org.example.bibliotecafx.DAO.AutorDAOImpl;
 import org.example.bibliotecafx.DAO.IAutorDAO;
+import org.example.bibliotecafx.DAO.SocioDAOImpl;
 import org.example.bibliotecafx.entities.Autor;
+import org.example.bibliotecafx.entities.Socio;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,6 +67,8 @@ public class GestionInterfaces {
 
     @FXML
     private TextArea txtAreaSocios;
+
+    private final SocioDAOImpl socioDAO = new SocioDAOImpl();
 
     // Objetos de la interfaz Prestamo
 
@@ -317,27 +321,127 @@ public class GestionInterfaces {
 
     @FXML
     private void BotonAgregarSocio() {
-        System.out.println("Botón Registrar Socio presionado");
+        String nombre = txtNombreSocio.getText();
+        String direccion = txtDireccionSocio.getText();
+        String telefono = txtTelefonoSocio.getText().trim();
+
+        if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El nombre, la direccion y el telefono deben ser llenados.");
+            return;
+        }
+
+        Socio nuevoSocio = new Socio(nombre, direccion, telefono);
+        socioDAO.registrarSocio(nuevoSocio);
+        showAlert(Alert.AlertType.INFORMATION, "Éxito", "Socio agregado correctamente.");
+        BotonLimpiarSocios();
     }
 
     @FXML
     private void BotonModificarSocio() {
-        System.out.println("Botón Modificar Socio presionado");
+        String idTexto = txtIdSocio.getText().trim();
+        String nombre = txtNombreSocio.getText().trim();
+        String direccion = txtDireccionSocio.getText();
+        String telefono = txtTelefonoSocio.getText().trim();
+
+        if (idTexto.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Todos los campos deben estar llenos.");
+            return;
+        }
+
+        try {
+            Integer id = Integer.parseInt(idTexto);
+            Socio socioExistente = socioDAO.buscarPorId(id);
+
+            if (socioExistente != null) {
+                socioExistente.setNombreSocio(nombre);
+                socioExistente.setDireccion(direccion);
+                socioExistente.setTelefono(telefono);
+                socioDAO.modificarSocio(socioExistente);
+                showAlert(Alert.AlertType.INFORMATION, "Éxito", "Socio modificado correctamente.");
+            } else {
+                showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró un socio con ese ID.");
+            }
+            BotonLimpiarSocios();
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ID debe ser un número válido.");
+        }
     }
 
     @FXML
     private void BotonEliminarSocio() {
-        System.out.println("Botón Eliminar Socio presionado");
+        String idTexto = txtIdSocio.getText().trim();
+
+        if (idTexto.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Debe ingresar un ID.");
+            return;
+        }
+
+        try {
+            Integer id = Integer.parseInt(idTexto);
+            boolean eliminado = socioDAO.eliminarSocio(id);
+            if (eliminado) {
+                showAlert(Alert.AlertType.INFORMATION, "Éxito", "Socio eliminado correctamente.");
+            } else {
+                showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró un socio con ese ID.");
+            }
+            BotonLimpiarSocios();
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "El ID debe ser un número válido.");
+        }
     }
 
     @FXML
     private void BotonBuscarSocio() {
-        System.out.println("Botón Buscar Socio presionado");
+        String parametro1 = txtNombreSocio.getText().trim();
+        String parametro2 = txtTelefonoSocio.getText().trim();
+        String parametro = parametro1.isEmpty() ? parametro2 : parametro1;
+
+        if (parametro.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Ingrese un nombre o teléfono para buscar.");
+            return;
+        }
+
+        List<Socio> sociosEncontrados = socioDAO.buscarPorParametro(parametro);
+        txtAreaSocios.clear();
+
+        if (sociosEncontrados.isEmpty()) {
+            txtAreaSocios.setText("No se encontraron socios con ese criterio.");
+            showAlert(Alert.AlertType.WARNING, "No encontrado", "No se encontró ningún socio con ese dato.");
+
+        } else if (sociosEncontrados.size() == 1) {
+            Socio socio = sociosEncontrados.get(0);
+            txtNombreSocio.setText(socio.getNombreSocio());
+            txtDireccionSocio.setText(socio.getDireccion());
+            txtTelefonoSocio.setText(socio.getTelefono());
+            txtIdSocio.setText(String.valueOf(socio.getIdSocio()));
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Socio encontrado. Datos cargados en los campos.");
+
+        } else {
+            StringBuilder resultado = new StringBuilder();
+            for (Socio socio : sociosEncontrados) {
+                resultado.append(socio.toString()).append("\n");
+            }
+            txtAreaSocios.setText(resultado.toString());
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Múltiples socios encontrados.");
+        }
     }
 
     @FXML
     private void BotonListarSocios() {
+        List<Socio> listaSocios = socioDAO.obtenerSocios();
+        txtAreaSocios.clear();
 
+        if (!listaSocios.isEmpty()) {
+            StringBuilder lista = new StringBuilder();
+            for (Socio socio : listaSocios) {
+                lista.append(socio.toString()).append("\n");
+            }
+            txtAreaSocios.setText(lista.toString());
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Lista de socios obtenida.");
+        } else {
+            txtAreaSocios.setText("No hay socios registrados.");
+            showAlert(Alert.AlertType.WARNING, "Vacío", "No hay socios en la base de datos.");
+        }
     }
 
     @FXML
@@ -380,31 +484,22 @@ public class GestionInterfaces {
         return palabra.substring(0, 1).toUpperCase() + palabra.substring(1).toLowerCase();
     }
 
-    private static String capitalizarPrimeraLetraYDespuesDeEspacios(String palabra) {
-        if (palabra == null || palabra.isEmpty()) {
-            return palabra;
+    private static String capitalizarPrimeraLetraYDespuesDeEspacios(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
         }
 
+        String[] palabras = texto.toLowerCase().split("\\s+");
         StringBuilder resultado = new StringBuilder();
-        boolean siguienteMayuscula = true;
 
-        for (int i = 0; i < palabra.length(); i++) {
-            char c = palabra.charAt(i);
-
-            if (c == ' ') {
-                resultado.append(c);
-                siguienteMayuscula = true;
-
-            } else {
-                if (siguienteMayuscula) {
-                    resultado.append(Character.toUpperCase(c));
-                    siguienteMayuscula = false;
-
-                } else {
-                    resultado.append(Character.toLowerCase(c));
-                }
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                resultado.append(Character.toUpperCase(palabra.charAt(0)))
+                        .append(palabra.substring(1))
+                        .append(" ");
             }
         }
-        return resultado.toString();
+
+        return resultado.toString().trim();
     }
 }

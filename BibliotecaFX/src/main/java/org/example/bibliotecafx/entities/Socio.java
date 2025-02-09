@@ -43,9 +43,9 @@ public class Socio {
 
     // SETTERS
 
-    public void setNombreSocio(String nombreSocio) { this.nombreSocio = capitalizarPrimeraLetra(nombreSocio); }
+    public void setNombreSocio(String nombreSocio) { this.nombreSocio = capitalizarPrimeraLetraYDespuesDeEspacios(nombreSocio); }
 
-    public void setDireccion(String direccion) { this.direccion = capitalizarPrimeraLetra(direccion); }
+    public void setDireccion(String direccion) { this.direccion = capitalizarPrimeraLetraYDespuesDeEspacios(direccion); }
 
     public void setTelefono(String telefono) { this.telefono = telefono; }
 
@@ -66,6 +66,24 @@ public class Socio {
             return palabra;
         }
         return palabra.substring(0, 1).toUpperCase() + palabra.substring(1).toLowerCase();
+    }
+
+    private static String capitalizarPrimeraLetraYDespuesDeEspacios(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+
+        String[] palabras = texto.toLowerCase().split("\\s+");
+        StringBuilder resultado = new StringBuilder();
+
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                resultado.append(Character.toUpperCase(palabra.charAt(0)))
+                        .append(palabra.substring(1))
+                        .append(" ");
+            }
+        }
+        return resultado.toString().trim();
     }
 
 }
