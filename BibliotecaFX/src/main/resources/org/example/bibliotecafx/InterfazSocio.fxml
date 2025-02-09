@@ -13,33 +13,38 @@
 
             <!-- Contenedor para los botones de acciones -->
             <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarAutor" text="Añadir Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarAutor" text="Eliminar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" />
-                <Button onAction="#BotonListarAutores" text="Listar Autores" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarAutor" text="Limpiar Campos" textAlignment="CENTER" />
+                <Button onAction="#BotonAgregarSocio" text="Añadir Socio" textAlignment="CENTER" />
+                <Button onAction="#BotonEliminarSocio" text="Eliminar Socio" textAlignment="CENTER" />
+                <Button onAction="#BotonModificarSocio" text="Modificar Autor" textAlignment="CENTER" />
+                <Button onAction="#BotonBuscarSocio" text="Buscar por Nombre o teléfono" textAlignment="CENTER" />
+                <Button onAction="#BotonListarSocios" text="Listar Socios" textAlignment="CENTER" />
+                <Button onAction="#BotonLimpiarSocios" text="Limpiar Campos" textAlignment="CENTER" />
             </HBox>
 
             <!-- Contenedor para los campos de entrada en horizontal -->
-            <HBox layoutX="90" layoutY="200" spacing="20">
+            <HBox layoutX="90" layoutY="200" spacing="50">
                 <Label text="Nombre:" />
-                <TextField fx:id="txtNombreAutor" />
-                <Label text="Nacionalidad:" />
-                <TextField fx:id="txtNacionalidadAutor" />
+                <TextField fx:id="txtNombreSocio" />
+                <Label text="Dirección:" />
+                <TextField fx:id="txtDireccionSocio" prefWidth="300"/>
+            </HBox>
+
+            <HBox layoutX="90" layoutY="250" spacing="50">
+                <Label text="Teléfono:" />
+                <TextField fx:id="txtTelefonoSocio" />
                 <Label text="ID:" />
-                <TextField fx:id="txtIdAutor"/>
+                <TextField fx:id="txtIdSocio"/>
             </HBox>
 
             <!-- Área de texto para mostrar los autores -->
-            <TextArea fx:id="txtAreaAutores" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <TextArea fx:id="txtAreaSocios" layoutX="100" layoutY="300" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
 
             <!-- Franja inferior -->
             <Rectangle fill="#D3D3D3" height="150" layoutY="650" width="900" />
 
             <HBox layoutX="350 " layoutY="690" spacing="80">
                 <Button onAction="#BotonVolverSocio" text="Volver" textAlignment="CENTER" />
-                <Button onAction="#BotonSalirAutor" text="Salir" textAlignment="CENTER" />
+                <Button onAction="#BotonSalirSocio" text="Salir" textAlignment="CENTER" />
             </HBox>
 
         </children>

@@ -39,7 +39,7 @@
 
             <HBox layoutX="350 " layoutY="690" spacing="80">
                 <Button onAction="#BotonVolverPrestamo" text="Volver" textAlignment="CENTER" />
-                <Button onAction="#BotonSalirAutor" text="Salir" textAlignment="CENTER" />
+                <Button onAction="#BotonSalirPrestamo" text="Salir" textAlignment="CENTER" />
             </HBox>
 
         </children>
