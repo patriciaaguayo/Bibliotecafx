@@ -11,21 +11,21 @@
 
             <Rectangle fill="#CFE8FF" height="150" layoutY="0" width="900" />
 
-            <HBox layoutX="150" layoutY="90" spacing="50">
-                <Button onAction="#BotonAgregarPrestamo" text="Añadir Prestamo" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarPrestamoSocio" text="Buscar por Socio" textAlignment="CENTER" />
-                <Button onAction="#BotonListarPrestamos" text="Listar Prestamos" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarPrestamo" text="Limpiar Campos" textAlignment="CENTER" />
+            <HBox layoutX="80" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarPrestamo" text="Añadir Prestamo" textAlignment="CENTER" styleClass="BotonesPrestamo"/>
+                <Button onAction="#BotonBuscarPrestamoSocio" text="Buscar por Socio" textAlignment="CENTER" styleClass="BotonesPrestamo"/>
+                <Button onAction="#BotonListarPrestamos" text="Listar Prestamos" textAlignment="CENTER" styleClass="BotonesPrestamo"/>
+                <Button onAction="#BotonLimpiarPrestamo" text="Limpiar Campos" textAlignment="CENTER" styleClass="BotonesPrestamo"/>
             </HBox>
 
-            <HBox layoutX="160" layoutY="200" spacing="50">
-                <Label text="Socio:" />
-                <TextField fx:id="txIdSocioPrestamo" />
-                <Label text="ISBN:" />
-                <TextField fx:id="txtISBNPrestamo" />
+            <HBox layoutX="140" layoutY="200" spacing="50">
+                <Label text="Socio:" styleClass="textoPrestamo"/>
+                <TextField fx:id="txIdSocioPrestamo" styleClass="textoPrestamo"/>
+                <Label text="ISBN:" styleClass="textoPrestamo"/>
+                <TextField fx:id="txtISBNPrestamo" styleClass="textoPrestamo"/>
             </HBox>
 
-            <TextArea fx:id="txtAreaPrestamos" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <TextArea fx:id="txtAreaPrestamos" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false" styleClass="textoPrestamo"/>
 
             <Rectangle fill="#CFE8FF" height="150" layoutY="650" width="900" />
 

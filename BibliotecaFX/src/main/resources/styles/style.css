@@ -100,5 +100,23 @@ Button#InterfazInicio {
     -fx-font-alignment: justify;
 }
 
+.BotonesPrestamo{
+-fx-background-color: #FFFFFF;
+    -fx-pref-width: 150px;
+    -fx-min-height: 35px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+}
+
+.BotonesPrestamo:hover {
+    -fx-background-color: #044E93;
+    -fx-text-fill: white;
+}
+
+.textoPrestamo{
+    -fx-font-size: 16px;
+    -fx-font-alignment: justify;
+}
+
 
 

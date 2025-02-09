@@ -84,6 +84,6 @@ public class Prestamo {
                 ", Nombre Socio: " + socio.getNombreSocio() +
                 ", Fecha Préstamo: " + fechaPrestamo.format(formatter) +
                 ", Fecha Devolución: " + fechaDevolucion.format(formatter) +
-                ", Estado: " + estado;
+                ", Estado: " + estado + "\n";
     }
 }
