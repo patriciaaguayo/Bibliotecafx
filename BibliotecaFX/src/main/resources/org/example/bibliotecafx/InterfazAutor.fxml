@@ -9,28 +9,30 @@
 
         <children>
 
-            <Rectangle fill="#CFE8FF" height="150" layoutY="0" width="900" />
+            <Rectangle fill="#CFE8FF" height="200" layoutY="0" width="900" />
 
-            <HBox layoutX="100" layoutY="90" spacing="10">
-                <Button onAction="#BotonAgregarAutor" text="Añadir Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonEliminarAutor" text="Eliminar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" />
-                <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" />
-                <Button onAction="#BotonListarAutores" text="Listar Autores" textAlignment="CENTER" />
-                <Button onAction="#BotonLimpiarAutor" text="Limpiar Campos" textAlignment="CENTER" />
+            <HBox layoutX="80" layoutY="90" spacing="50">
+                <Button onAction="#BotonAgregarAutor" text="Añadir Autor" textAlignment="CENTER" styleClass="BotonesAutor"/>
+                <Button onAction="#BotonEliminarAutor" text="Eliminar Autor" textAlignment="CENTER" styleClass="BotonesAutor"/>
+                <Button onAction="#BotonModificarAutor" text="Modificar Autor" textAlignment="CENTER" styleClass="BotonesAutor"/>
             </HBox>
 
-            <HBox layoutX="90" layoutY="200" spacing="20">
-                <Label text="Nombre:" />
-                <TextField fx:id="txtNombreAutor" />
-                <Label text="Nacionalidad:" />
-                <TextField fx:id="txtNacionalidadAutor" />
-                <Label text="ID:" />
-                <TextField fx:id="txtIdAutor"/>
+            <HBox layoutX="80" layoutY="140" spacing="50">
+                <Button onAction="#BotonBuscarAutor" text="Buscar por Nombre" textAlignment="CENTER" styleClass="BotonesAutor"/>
+                <Button onAction="#BotonListarAutores" text="Listar Autores" textAlignment="CENTER" styleClass="BotonesAutor"/>
+                <Button onAction="#BotonLimpiarAutor" text="Limpiar Campos" textAlignment="CENTER" styleClass="BotonesAutor"/>
             </HBox>
 
-            <!-- Área de texto para mostrar los autores -->
-            <TextArea fx:id="txtAreaAutores" layoutX="100" layoutY="280" prefHeight="300" prefWidth="700" wrapText="true" editable="false"/>
+            <HBox layoutX="70" layoutY="240" spacing="20">
+                <Label text="Nombre:" styleClass="textoAutor"/>
+                <TextField fx:id="txtNombreAutor" styleClass="textoAutor"/>
+                <Label text="Nacionalidad:" styleClass="textoAutor"/>
+                <TextField fx:id="txtNacionalidadAutor" styleClass="textoAutor"/>
+                <Label text="ID:" styleClass="textoAutor"/>
+                <TextField fx:id="txtIdAutor" styleClass="textoAutor"/>
+            </HBox>
+
+            <TextArea fx:id="txtAreaAutores" layoutX="100" layoutY="300" prefHeight="300" prefWidth="700" wrapText="true" editable="false" styleClass="textoAutor"/>
 
             <Rectangle fill="#CFE8FF" height="150" layoutY="650" width="900" />
 

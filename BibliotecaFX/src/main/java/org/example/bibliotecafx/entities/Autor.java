@@ -49,7 +49,7 @@ public class Autor {
     public String toString() {
         return "\n Id: " + idAutor +
                 ", Nombre: " + nombreAutor +
-                ", Nacionalidad: " + nacionalidad;
+                ", Nacionalidad: " + nacionalidad + "\n";
     }
 
     // MÉTODOS

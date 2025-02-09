@@ -82,5 +82,23 @@ Button#InterfazInicio {
     -fx-font-alignment: justify;
 }
 
+.BotonesAutor{
+-fx-background-color: #FFFFFF;
+    -fx-pref-width: 220px;
+    -fx-min-height: 35px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+}
+
+.BotonesAutor:hover {
+    -fx-background-color: #044E93;
+    -fx-text-fill: white;
+}
+
+.textoAutor{
+    -fx-font-size: 14px;
+    -fx-font-alignment: justify;
+}
+
 
 
