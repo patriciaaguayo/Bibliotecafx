@@ -15,6 +15,7 @@
         <children>
 
             <Rectangle fill="#CFE8FF" height="150" layoutY="0" width="900" />
+            <Label text="Mi Biblioteca JavaFX" styleClass="textoInicio" layoutX="340" layoutY="90"/>
 
             <VBox layoutX="350" layoutY="200" spacing="40">
                 <Button text="Autores" onAction="#BotonAutores" styleClass="Inicio"/>

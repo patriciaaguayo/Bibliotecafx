@@ -18,6 +18,11 @@ Button#InterfazInicio {
     -fx-background-radius: 10px;
 }
 
+.textoInicio{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
 .Inicio{
 -fx-background-color: #CFE8FF;
     -fx-pref-width: 200px;
@@ -48,7 +53,7 @@ Button#InterfazInicio {
 
 .BotonesLibro{
 -fx-background-color: #FFFFFF;
-    -fx-pref-width: 220px;
+    -fx-pref-width: 230px;
     -fx-min-height: 35px;
     -fx-font-size: 14px;
     -fx-background-radius: 10px;

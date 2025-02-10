@@ -13,13 +13,13 @@
 
             <Rectangle fill="#CFE8FF" height="200" layoutY="0" width="900" />
 
-            <HBox layoutX="80" layoutY="90" spacing="50">
+            <HBox layoutX="60" layoutY="90" spacing="50">
                 <Button onAction="#BotonAgregarLibro" text="Añadir Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
                 <Button onAction="#BotonEliminarLibro" text="Eliminar Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
                 <Button onAction="#BotonModificarLibro" text="Modificar Libro" textAlignment="CENTER" styleClass="BotonesLibro"/>
             </HBox>
 
-            <HBox layoutX="80" layoutY="140" spacing="50">
+            <HBox layoutX="60" layoutY="140" spacing="50">
                 <Button onAction="#BotonBuscarLibro" text="Buscar por Nombre, ISBN o Autor" textAlignment="CENTER" styleClass="BotonesLibro"/>
                 <Button onAction="#BotonListarLibros" text="Listar Libros Disponibles" textAlignment="CENTER" styleClass="BotonesLibro"/>
                 <Button onAction="#BotonLimpiarLibro" text="Limpiar Campos" textAlignment="CENTER" styleClass="BotonesLibro"/>

@@ -17,9 +17,6 @@ module org.example.bibliotecafx {
     // Abre este paquete para JavaFX FXML
     opens org.example.bibliotecafx to javafx.fxml;
 
-    // Exporta el módulo principal
-    exports org.example.bibliotecafx;
-
     // Permite que Hibernate acceda a las entidades
     opens org.example.bibliotecafx.entities to org.hibernate.orm.core;
 
