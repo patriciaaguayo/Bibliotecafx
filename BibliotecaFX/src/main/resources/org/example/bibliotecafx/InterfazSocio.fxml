@@ -4,7 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<VBox fx:id="InterfazSocio" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
+<VBox fx:id="InterfazSocio" alignment="CENTER" prefHeight="700" prefWidth="900" spacing="20.0" styleClass="background-style"
+      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+      fx:controller="org.example.bibliotecafx.GestionInterfaz.GestionInterfaces">
     <AnchorPane prefHeight="700" prefWidth="900" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
