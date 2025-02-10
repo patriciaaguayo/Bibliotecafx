@@ -3,7 +3,6 @@ package org.example.bibliotecafx.GestionInterfaz;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.example.bibliotecafx.Util.HibernateUtil;
@@ -20,7 +19,7 @@ public class InterfazPrincipal extends Application {
         scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResource("/imagenes/FotoLibros.png").toString()));
+        //stage.getIcons().add(new Image(getClass().getResource("/imagenes/NombreImagen.png").toString())); Si quiero añadirlo
         stage.setTitle("BibliotecaFX");
         stage.setScene(scene);
         stage.show();
