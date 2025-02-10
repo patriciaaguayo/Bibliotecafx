@@ -30,12 +30,23 @@ public class Prestamo {
 
     public Prestamo() {}
 
+    // CONSTRUCTOR CON EL QUE NO TENER PRESTAMOS ACTIVOS
+
     public Prestamo(Libro libro, Socio socio) {
         this.libro = libro;
         this.socio = socio;
         this.fechaPrestamo = LocalDate.now().minusDays(1); // Establecer la fecha de préstamo al día de ayer
         this.fechaDevolucion = LocalDate.now(); // Establecer la fecha de devolución al día de hoy
     }
+
+    /* CONSTRUCTOR CON EL QUE TENER PRESTAMOS ACTIVOS
+
+    public Prestamo(Libro libro, Socio socio, String hola) {
+        this.libro = libro;
+        this.socio = socio;
+        this.fechaPrestamo = LocalDate.now();
+        this.fechaDevolucion = LocalDate.now().plusDays(7);
+    }*/
 
     // GETTERS
 
